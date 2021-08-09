@@ -37,22 +37,4 @@ public class TestPage {
 
 
 
-//public static final String USERNAME = "alejandrocabrera4";
-//public static final String AUTOMATE_KEY = "SJCZYksk2xL82fkgHzZq";
-//public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
-//public static final String URL ="http://192.168.0.127:4545/wd/hub"; 
-/*	DesiredCapabilities caps = new DesiredCapabilities();
-
-caps.setCapability("os", "Windows");
-caps.setCapability("os_version", "10");
-caps.setCapability("browser", "Chrome");
-caps.setCapability("browser_version", "80");
-caps.setCapability("name", "alejandrocabrera4's First Test");*/
-//1	caps.setBrowserName(BrowserType.FIREFOX); 
-//		driver = new RemoteWebDriver(new URL(URL),caps);
-
-
-
-
-//	driver.quit();
