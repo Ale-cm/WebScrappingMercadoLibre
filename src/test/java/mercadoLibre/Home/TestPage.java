@@ -8,7 +8,11 @@ import com.org.PruebaWebScrapp.mercadoLibre.PageBusqueda;
 import com.org.PruebaWebScrapp.mercadoLibre.PageProduct;
 
 import helpers.Helpers;
-
+/**
+ * TestPage Clase principal
+ * @author Alejandro
+ *
+ */
 public class TestPage {
 
 	public static void main(String[] args) throws AWTException, InterruptedException, MalformedURLException {
