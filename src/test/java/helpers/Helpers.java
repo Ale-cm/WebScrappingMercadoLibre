@@ -24,15 +24,22 @@ public class Helpers {
 		 }else { // En caso de que sea linux
 			// System.out.println("10"); 
 			 return  "drivers/chromedriver"; 
-		
-		 }
-		
+		 }	
 	}
 
 	public void MaxPantalla(WebDriver driver) throws HeadlessException {
 		driver.manage().window().maximize();
 	}
 
+
+	public void leerJson() {
+		
 	}
+	public void guardarJson() {
+		
+	}
+	
+	
+}
 
 
