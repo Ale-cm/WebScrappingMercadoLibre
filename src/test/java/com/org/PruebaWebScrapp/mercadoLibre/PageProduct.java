@@ -1,11 +1,16 @@
 package com.org.PruebaWebScrapp.mercadoLibre;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONAware;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -24,7 +29,7 @@ public class PageProduct {
 	private Map<Integer, Producto> listaDePrecios;
 	private ArrayList<String> linksDeProductos;
 	private WebDriver driver;
-
+	private JSONArray json;
 	/**
 	 * @param driver
 	 */
@@ -45,14 +50,36 @@ public class PageProduct {
 		listaDePrecios = new HashMap<Integer, Producto>();
 		this.linksDeProductos = linksDeProductos;
 		// DBG: linksDeProductos.size()
-		for (int i = 0; i < 10; i++) {
+		json=new JSONArray();
+	
+		for (int i = 0; i < 5; i++) {
 			driver.navigate().to(linksDeProductos.get(i));
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			nombrePrueba = driver.findElement(nombreXP).getText(); // div//h1
-			precioPrueba = driver.findElement(precioXP).getText(); // Double.valueOf(someString)
+			precioPrueba = driver.findElement(precioXP).getText(); // Double.valueOf(someString)	
 			listaDePrecios.put(i, new Producto(nombrePrueba, limpiarPrecio(precioPrueba))); 
+			json.add(new Producto(nombrePrueba,new Double(limpiarPrecio(precioPrueba))));
+
 		}
+		guardarJson(json);
 	}
+		/**
+		 * guarda el JSONArray en un archivo.json
+		 * @param jsonA JSONArray que guardo en un archivo.json
+		 */
+	public void guardarJson(JSONArray jsonA) {
+		//DBG: System.out.println(json); 
+		 try {
+				FileWriter file = new FileWriter("archivoJson/prueba.json");
+				file.write(jsonA.toJSONString());
+				file.flush();
+				file.close();
+			} catch (IOException e) {
+				System.out.println("parece que no." +e);
+			}
+		
+	}
+		
 	/**
 	 * 
 	 * @param precio. es un string con un caracter "." que debe eliminarse	
@@ -67,10 +94,13 @@ public class PageProduct {
 	 * mostrar recorre el map imprimiendo por consola el codigo(su posición en el array) el nombre del producto y su precio 
 	 */
 	public void mostrar() {
+		
 		// DBG: System.out.println(listaDePrecios.size());
 		for (Entry<Integer, Producto> i : listaDePrecios.entrySet()) {
 			System.out.println("| Codigo: " + i.getKey() + "| EL nombre es: " + i.getValue().nombre
 					+ " | El precio es: " + i.getValue().precio + " |");
+			
+	
 		}
 	}
 /**
@@ -78,13 +108,29 @@ public class PageProduct {
  * @author Alejandro
  *
  */
-	class Producto {
+	class Producto implements JSONAware{
 		private String nombre;
 		private double precio;
 
 		public Producto(String nombre, double precio) {
 			this.nombre = nombre;
 			this.precio = precio;
+		}
+
+		@Override
+		public String toJSONString() {
+			StringBuilder sb = new StringBuilder();
+		      sb.append("{");
+		      sb.append("nombre");
+		      sb.append(":");
+		      sb.append("\"" + JSONObject.escape(nombre) + "\"");
+		      sb.append(",");
+		      sb.append("Precio");
+		      sb.append(":");
+		      sb.append(precio);
+		      sb.append("}");
+		      return sb.toString();
+		
 		}
 
 	}

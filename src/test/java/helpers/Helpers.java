@@ -46,14 +46,6 @@ public class Helpers {
 		driver.manage().window().maximize();
 	}
 
-
-	public void leerJson() {
-		
-	}
-	public void guardarJson() {
-		
-	}
-	
 	
 }
 
