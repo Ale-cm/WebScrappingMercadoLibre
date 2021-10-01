@@ -11,8 +11,7 @@
 
 	<name>mercadoLibre</name>
 	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
-
+	<url>http://www.mercadolibre.com</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
@@ -37,6 +36,13 @@
     <groupId>com.googlecode.json-simple</groupId>
     <artifactId>json-simple</artifactId>
     <version>1.1.1</version>
+</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.44</version>
 </dependency>
 		
 	</dependencies>
