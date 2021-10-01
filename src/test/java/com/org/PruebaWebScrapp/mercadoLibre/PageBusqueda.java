@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
  * PageBusqueda representa la pagina donde se encuentran los productos de la
  * busqueda realizada
  * 
- * @author Alejandro
+ * @author Miguel A. Cabrera
  *
  */
 public class PageBusqueda {
