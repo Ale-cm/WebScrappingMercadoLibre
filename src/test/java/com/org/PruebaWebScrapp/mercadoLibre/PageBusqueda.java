@@ -1,13 +1,12 @@
 package com.org.PruebaWebScrapp.mercadoLibre;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * PageBusqueda representa la pagina donde se encuentran los productos de la
@@ -32,13 +31,12 @@ public class PageBusqueda {
 	 * @return retorno la lista de url de los productos que aparecen en la pagina
 	 */
 	public ArrayList<String> obtenerUrls() {
-		ArrayList<String> linksDeProductos = new ArrayList<String>();
+		ArrayList<String> linksDeProductos = new ArrayList<>();
 		List<WebElement> linksPrimeraBusqueda = driver.findElements(xPathLinks);// guardo Los links en un List WebElement
 		// DBG: System.out.println(linksPrimeraBusqueda.size());
-		Iterator<WebElement> it = linksPrimeraBusqueda.iterator();
-		while (it.hasNext()) {
+		for (WebElement webElement : linksPrimeraBusqueda) {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			String urlProducto = it.next().getAttribute("href");
+			String urlProducto = webElement.getAttribute("href");
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			// DBG: System.out.println(urlProducto);
 			linksDeProductos.add(urlProducto);
