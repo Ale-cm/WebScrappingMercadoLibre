@@ -5,3 +5,6 @@
 ### -muestro por consola los datos.
 ### -guardo en un archivo .json el precio y nombre del producto
 ### -guarda el nombre y precio en una base de datos mysql
+
+## -Asegurarse de tener abierto Apache y mysql
+desde phpmyadmin pueden habilitarlo facilmente. 

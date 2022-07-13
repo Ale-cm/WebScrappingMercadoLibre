@@ -15,7 +15,7 @@ import org.openqa.selenium.WebDriver.Navigation;
  */
 public class HomeMeli {
 	WebDriver driver;
-	Navigation nav;
+
 	private By buscar = By.name("as_word");
 	private By btn_buscar = By.xpath("//button//div");
 
@@ -23,14 +23,17 @@ public class HomeMeli {
 	Helpers help = new Helpers();
 	/**
 	 * Inicia el driver que recibe.
-	 * @param driver.
 	 */
 	public void iniciarDriver(WebDriver driver) {
 		this.driver = driver;
-	}	
+	}
+
+	public HomeMeli(WebDriver driver) {
+		this.driver = driver;
+	}
+
 	/**
-	 * Buscar. va hacia la direccion que llega desde link	
-	 * @param link. dirección web a la cual se quiere ir en este caso la pagina principal de mercado libre
+	 * Buscar. va hacia la direccion que llega desde link
 	 */
 	public void buscar(String link) {
 		this.driver.navigate().to(link);
@@ -38,7 +41,6 @@ public class HomeMeli {
 	/**
 	 * EscribeBusqueda. Escribe la busqueda en el cuadro de busqueda de la pagina mercadolibre
 	 *  y da click en el boton buscar.
-	 * @param nombre. nombre del producto a buscar
 	 */
 	public void EscribeBusqueda(String nombre) {
 		driver.findElement(buscar).sendKeys(nombre);
