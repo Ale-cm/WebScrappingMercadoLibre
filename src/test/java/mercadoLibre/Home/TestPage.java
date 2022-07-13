@@ -23,7 +23,7 @@ public class TestPage {
 		Helpers help= new Helpers();
 
 		String baseDatos="mercadoli";
-		String producto="zapatillas";
+		String producto="camisa";
 
 		BaseDatosCUp bdup= new BaseDatosCUp();
 		Conexion c = new Conexion();
@@ -45,7 +45,7 @@ public class TestPage {
 		MLpageProd.guardarDatos(MLpageBusq.obtenerUrls());
 		
 		MLpageProd.mostrar();
-	 //DBG: 	help.espera_S(3);
+	 //DBG:help.espera_S(3);
 		driver.close();	
 	}
 }
