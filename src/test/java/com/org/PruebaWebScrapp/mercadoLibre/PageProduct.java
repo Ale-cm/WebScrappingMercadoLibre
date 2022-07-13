@@ -2,7 +2,6 @@ package com.org.PruebaWebScrapp.mercadoLibre;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,18 +26,13 @@ public class PageProduct {
 
 	private By precioXP = By.xpath("//main//div//div//span//meta/following-sibling::span[2]/span[2]");
 	private By nombreXP = By.xpath("//div//h1");
-	private String nombrePrueba;
-	private String precioPrueba;
 	private Map<Integer, Producto> listaDePrecios;
-	private ArrayList<String> linksDeProductos;
 	private WebDriver driver;
-	private JSONArray json;
 	Conexion c=new Conexion();
 	BaseDatosCUp bdup= new BaseDatosCUp();
-	private String bd="";
-	private String bdt="";
+	private String bd;
+	private String bdt;
 	/**
-	 * @param driver
 	 */
 	public PageProduct(WebDriver driver,String bd,String bdt) {
 		super();
@@ -54,23 +48,20 @@ public class PageProduct {
 	 * y precio (objeto Producto)
 	 * 
 	 * @param linksDeProductos Lista de url de todos los productos
-	 * @throws InterruptedException
-	 * @throws MalformedURLException
 	 */
-	public void guardarDatos(ArrayList<String> linksDeProductos) throws InterruptedException, MalformedURLException {
+	public void guardarDatos(ArrayList<String> linksDeProductos) {
 		listaDePrecios = new HashMap<Integer, Producto>();
-		this.linksDeProductos = linksDeProductos;
 		// DBG: linksDeProductos.size()
-		json = new JSONArray();
+		JSONArray json = new JSONArray();
 
 		for (int i = 0; i < 5; i++) {
 			driver.navigate().to(linksDeProductos.get(i));
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			nombrePrueba = driver.findElement(nombreXP).getText(); // div//h1
-			precioPrueba = driver.findElement(precioXP).getText(); // Double.valueOf(someString)
-			bdup.insertarRegistro(c,bd,bdt,i,nombrePrueba, limpiarPrecio(precioPrueba));
+			String nombrePrueba = driver.findElement(nombreXP).getText(); // div//h1
+			String precioPrueba = driver.findElement(precioXP).getText(); // Double.valueOf(someString)
+			bdup.insertarRegistro(c,bd,bdt,i, nombrePrueba, limpiarPrecio(precioPrueba));
 			listaDePrecios.put(i, new Producto(nombrePrueba, limpiarPrecio(precioPrueba)));
-			json.add(new Producto(nombrePrueba, new Double(limpiarPrecio(precioPrueba))));
+			json.add(new Producto(nombrePrueba, (limpiarPrecio(precioPrueba))));
 			
 			
 		}
@@ -97,9 +88,10 @@ public class PageProduct {
 
 	/**
 	 * 
-	 * @param precio. es un string con un caracter "." que debe eliminarse
+	 * @param precio es un string con un caracter "." que debe eliminarse
 	 * @return un double que representa el precio
 	 */
+	@SuppressWarnings("JavadocReference")
 	private double limpiarPrecio(String precio) {
 		String pre;
 		pre = precio.replace(".", " ");
@@ -111,6 +103,7 @@ public class PageProduct {
 	 * array) el nombre del producto y su precio
 	 */
 	public void mostrar() {
+
 
 		// DBG: System.out.println(listaDePrecios.size());
 		for (Entry<Integer, Producto> i : listaDePrecios.entrySet()) {
@@ -137,17 +130,16 @@ public class PageProduct {
 
 		@Override
 		public String toJSONString() {
-			StringBuilder sb = new StringBuilder();
-			sb.append("{");
-			sb.append("nombre");
-			sb.append(":");
-			sb.append("\"" + JSONObject.escape(nombre) + "\"");
-			sb.append(",");
-			sb.append("Precio");
-			sb.append(":");
-			sb.append(precio);
-			sb.append("}");
-			return sb.toString();
+			String sb = "{" +
+					"nombre" +
+					":" +
+					"\"" + JSONObject.escape(nombre) + "\"" +
+					"," +
+					"Precio" +
+					":" +
+					precio +
+					"}";
+			return sb;
 
 		}
 

@@ -25,12 +25,12 @@ public void ConectarBasedeDatos(String bd){
  try {
  final String Controlador = "com.mysql.jdbc.Driver";
  Class.forName( Controlador );
- final String url_bd = "jdbc:mysql://localhost:3306/";
+ final String url_bd = "jdbc:mysql://localhost/";
  final String url_bd2 = "jdbc:mysql://localhost:3306/"+bd;
  if(bd.equals("")){ 
- conexion = DriverManager.getConnection(url_bd,"root","1234");
+ conexion = DriverManager.getConnection(url_bd,"root","");
  }else{
- conexion = DriverManager.getConnection(url_bd2,"root","1234");
+ conexion = DriverManager.getConnection(url_bd2,"root","");
  }
  sentencia = conexion.createStatement();
  } catch (ClassNotFoundException | SQLException ex) {

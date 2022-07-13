@@ -1,11 +1,7 @@
 package bdmysqljava;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
 
-import javax.swing.JOptionPane;
-
-import org.testng.log4testng.Logger;
 
 public class BaseDatosCUp {
 	
