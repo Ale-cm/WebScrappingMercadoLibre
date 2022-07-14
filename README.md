@@ -7,4 +7,4 @@
   -guarda el nombre y precio en una base de datos mysql
 
 ## -Asegurarse de tener abierto Apache y mysql
-desde phpmyadmin pueden habilitarlo facilmente. 
+desde XAMPP pueden habilitarlo facilmente. 
