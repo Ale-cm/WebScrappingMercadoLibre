@@ -1,12 +1,10 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
 
 /**
  * PageBusqueda representa la pagina donde se encuentran los productos de la
@@ -16,8 +14,9 @@ import java.util.concurrent.TimeUnit;
  *
  */
 public class PageBusqueda {
-	private final By xPathLinks = By.xpath("//ol/li/div/div/a[starts-with(@href,'https://')]");
 	private final WebDriver driver;
+	private final By xPathLinks = By.xpath("//ol/li/div/div/a[starts-with(@href,'https://')]");
+	private final By cssSelecLinks = By.cssSelector("a.ui-search-item__group__element.ui-search-link");
 
 	/**
 	 */
@@ -32,15 +31,17 @@ public class PageBusqueda {
 	 */
 	public ArrayList<String> obtenerUrls() {
 		ArrayList<String> linksDeProductos = new ArrayList<>();
+	//	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		List<WebElement> linksPrimeraBusqueda = driver.findElements(xPathLinks);// guardo Los links en un List WebElement
-		// DBG: System.out.println(linksPrimeraBusqueda.size());
+		if(linksPrimeraBusqueda.size()==0){
+			linksPrimeraBusqueda = driver.findElements(cssSelecLinks);// guardo Los links en un List WebElement
+		}
 		for (WebElement webElement : linksPrimeraBusqueda) {
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			String urlProducto = webElement.getAttribute("href");
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			// DBG: System.out.println(urlProducto);
+			System.out.println(urlProducto);
 			linksDeProductos.add(urlProducto);
 		}
+
 		return linksDeProductos;
 	}
 
