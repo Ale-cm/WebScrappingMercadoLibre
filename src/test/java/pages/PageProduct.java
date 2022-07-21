@@ -24,21 +24,21 @@ import bdmysqljava.Conexion;
  */
 public class PageProduct {
 
-	private By precioXP = By.xpath("//main//div//div//span//meta/following-sibling::span[2]/span[2]");
-	private By nombreXP = By.xpath("//div//h1");
+	private final By precioXP = By.xpath("//span[@class='andes-money-amount__fraction']");
+	private final By nombreXP = By.xpath("//div//h1");
 	private Map<Integer, Producto> listaDePrecios;
-	private WebDriver driver;
+	private final WebDriver driver;
 	Conexion c=new Conexion();
 	BaseDatosCUp bdup= new BaseDatosCUp();
-	private String bd;
-	private String bdt;
+	private final String bd;
+	private final String nameBdT;
 	/**
 	 */
-	public PageProduct(WebDriver driver,String bd,String bdt) {
+	public PageProduct(WebDriver driver,String bd,String nameBdT) {
 		super();
 		this.driver = driver;
 		this.bd=bd;
-		this.bdt=bdt;
+		this.nameBdT=nameBdT;
 	
 	}
 
@@ -50,20 +50,19 @@ public class PageProduct {
 	 * @param linksDeProductos Lista de url de todos los productos
 	 */
 	public void guardarDatos(ArrayList<String> linksDeProductos) {
-		listaDePrecios = new HashMap<Integer, Producto>();
-		// DBG: linksDeProductos.size()
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		listaDePrecios = new HashMap<>();
 		JSONArray json = new JSONArray();
-
+		String nameProduct;
+		double priceProduct;
 		for (int i = 0; i < 5; i++) {
 			driver.navigate().to(linksDeProductos.get(i));
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			String nombrePrueba = driver.findElement(nombreXP).getText(); // div//h1
-			String precioPrueba = driver.findElement(precioXP).getText(); // Double.valueOf(someString)
-			bdup.insertarRegistro(c,bd,bdt,i, nombrePrueba, limpiarPrecio(precioPrueba));
-			listaDePrecios.put(i, new Producto(nombrePrueba, limpiarPrecio(precioPrueba)));
-			json.add(new Producto(nombrePrueba, (limpiarPrecio(precioPrueba))));
-			
-			
+			nameProduct = driver.findElement(nombreXP).getText();
+			priceProduct = limpiarPrecio(driver.findElement(precioXP).getText());
+			bdup.insertarRegistro(c,bd,nameBdT,i, nameProduct, priceProduct);
+			listaDePrecios.put(i, new Producto(nameProduct, priceProduct));
+			json.add(new Producto(nameProduct, priceProduct));
+
 		}
 		guardarJson(json);
 	}
@@ -74,14 +73,13 @@ public class PageProduct {
 	 * @param jsonA JSONArray que guardo en un archivo.json
 	 */
 	public void guardarJson(JSONArray jsonA) {
-		// DBG: System.out.println(json);
 		try {
-			FileWriter file = new FileWriter("archivoJson/prueba.json");
+			FileWriter file = new FileWriter("archivoJson/"+nameBdT+".json");
 			file.write(jsonA.toJSONString());
 			file.flush();
 			file.close();
 		} catch (IOException e) {
-			System.out.println("parece que no." + e);
+			System.out.println("Parece que no." + e);
 		}
 
 	}
@@ -91,7 +89,6 @@ public class PageProduct {
 	 * @param precio es un string con un caracter "." que debe eliminarse
 	 * @return un double que representa el precio
 	 */
-	@SuppressWarnings("JavadocReference")
 	private double limpiarPrecio(String precio) {
 		String pre;
 		pre = precio.replace(".", " ");
@@ -104,8 +101,6 @@ public class PageProduct {
 	 */
 	public void mostrar() {
 
-
-		// DBG: System.out.println(listaDePrecios.size());
 		for (Entry<Integer, Producto> i : listaDePrecios.entrySet()) {
 			System.out.println("| Codigo: " + i.getKey() + "| EL nombre es: " + i.getValue().nombre
 					+ " | El precio es: " + i.getValue().precio + " |");
