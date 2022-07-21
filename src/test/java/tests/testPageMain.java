@@ -2,7 +2,6 @@ package tests;
 
 import bdmysqljava.BaseDatosCUp;
 import bdmysqljava.Conexion;
-import helpers.Helpers;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,13 +13,11 @@ import pages.PageProduct;
  * @author Miguel A. Cabrera
  *
  */
-public class TestPage {
+public class testPageMain {
 
 	public static void main(String[] args) {
 		WebDriverManager.firefoxdriver().setup();
 		WebDriver driver;
-		Helpers help= new Helpers();
-
 		String baseDatos="mercadoli";
 		String producto="camisa";
 
@@ -31,10 +28,7 @@ public class TestPage {
 		bdup.crearTabla(baseDatos, producto, c);
 		PageBusqueda  MLpageBusq= new PageBusqueda(driver);
 		PageProduct MLpageProd=new PageProduct(driver,baseDatos,producto);
-
 		HomeMeli  MLhome =new HomeMeli(driver);
-
-		help.MaxPantalla(driver);
 		MLhome.buscar("https://www.mercadolibre.com.ar/");
 		MLhome.EscribeBusqueda(producto);
 		
