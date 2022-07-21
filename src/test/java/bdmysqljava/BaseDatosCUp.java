@@ -35,10 +35,10 @@ public class BaseDatosCUp {
 	*
 	*
 	*/
-	public void crearTabla(String bd, String bdt,Conexion c) {
+	public void crearTabla(String bd, String nameBdT,Conexion c) {
 		try {
 			c.ConectarBasedeDatos(bd);
-			String sql= "CREATE TABLE IF NOT EXISTS "+bdt+" ("
+			String sql= "CREATE TABLE IF NOT EXISTS "+nameBdT+" ("
 					+"id int NOT NULL,"
 					+"nombre varchar(80),"
 					+"precio DOUBLE,"
@@ -68,11 +68,11 @@ public class BaseDatosCUp {
 	*
 	*/
 	
-	public void insertarRegistro(Conexion c,String bd,String bdt, int id, String nombre, double precio ) {
+	public void insertarRegistro(Conexion c,String bd,String nameBdT, int id, String nombre, double precio ) {
 		try {
 			c.ConectarBasedeDatos(bd);
-		String sql= "INSERT INTO `"+bd+"`.`"+bdt+"` (`id`,`nombre`,`precio`) VALUES ('"+id+"','"+nombre+"','"+precio+"');"; 
-			
+		String sql= "INSERT INTO `"+bd+"`.`"+nameBdT+"` (`id`,`nombre`,`precio`) VALUES ('"+id+"','"+nombre+"','"+precio+"');";
+
 		//**DBG: System.out.println(sql);
 		c.sentencia.execute(sql);
 		System.out.println("Se agrego el registro");	
