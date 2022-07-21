@@ -2,15 +2,13 @@ package tests;
 
 import bdmysqljava.BaseDatosCUp;
 import bdmysqljava.Conexion;
+import helpers.Helpers;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.HomeMeli;
 import pages.PageBusqueda;
 import pages.PageProduct;
-import helpers.Helpers;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 /**
  * TestPage Clase principal 
  * @author Miguel A. Cabrera
@@ -36,8 +34,8 @@ public class TestPage {
 
 		HomeMeli  MLhome =new HomeMeli(driver);
 
-		MLhome.iniciarDriver(driver);
 		help.MaxPantalla(driver);
+		MLhome.buscar("https://www.mercadolibre.com.ar/");
 		MLhome.EscribeBusqueda(producto);
 		
 		

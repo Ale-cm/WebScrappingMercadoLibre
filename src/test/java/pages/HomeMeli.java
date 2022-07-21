@@ -1,11 +1,7 @@
 package pages;
+
 import org.openqa.selenium.By;
-
 import org.openqa.selenium.WebDriver;
-
-import helpers.Helpers;
-
-import org.openqa.selenium.WebDriver.Navigation;
 /**
  * HomeMeli representa la pagina principal de Mercado libre en la cual realizaremos la busqueda
  * de un producto 
@@ -16,17 +12,8 @@ import org.openqa.selenium.WebDriver.Navigation;
 public class HomeMeli {
 	WebDriver driver;
 
-	private By buscar = By.name("as_word");
-	private By btn_buscar = By.xpath("//button//div");
+	private final By buscar = By.name("as_word");
 
-	
-	Helpers help = new Helpers();
-	/**
-	 * Inicia el driver que recibe.
-	 */
-	public void iniciarDriver(WebDriver driver) {
-		this.driver = driver;
-	}
 
 	public HomeMeli(WebDriver driver) {
 		this.driver = driver;
@@ -44,7 +31,7 @@ public class HomeMeli {
 	 */
 	public void EscribeBusqueda(String nombre) {
 		driver.findElement(buscar).sendKeys(nombre);
-		driver.findElement(btn_buscar).click();
+		driver.findElement(buscar).submit();
 	}
 	
 
