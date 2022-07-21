@@ -9,7 +9,7 @@
     <artifactId>mercadoLibre</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>mercadoLibre</name>
+    <name>base</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.mercadolibre.com</url>
     <properties>

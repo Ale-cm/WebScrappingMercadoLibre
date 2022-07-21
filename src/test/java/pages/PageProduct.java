@@ -1,4 +1,4 @@
-package com.org.PruebaWebScrapp.mercadoLibre;
+package pages;
 
 import java.io.FileWriter;
 import java.io.IOException;
