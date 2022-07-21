@@ -130,16 +130,15 @@ public class PageProduct {
 
 		@Override
 		public String toJSONString() {
-			String sb = "{" +
-					"nombre" +
+			return  "{" +
+					"\"nombre\"" +
 					":" +
 					"\"" + JSONObject.escape(nombre) + "\"" +
 					"," +
-					"Precio" +
+					"\"Precio\"" +
 					":" +
 					precio +
 					"}";
-			return sb;
 
 		}
 
