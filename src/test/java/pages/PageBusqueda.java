@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.*;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class PageBusqueda {
 	 */
 	public ArrayList<String> obtenerUrls() {
 		ArrayList<String> linksDeProductos = new ArrayList<>();
-	//	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+	 	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		List<WebElement> linksPrimeraBusqueda = driver.findElements(xPathLinks);// guardo Los links en un List WebElement
 		if(linksPrimeraBusqueda.size()==0){
 			linksPrimeraBusqueda = driver.findElements(cssSelecLinks);// guardo Los links en un List WebElement

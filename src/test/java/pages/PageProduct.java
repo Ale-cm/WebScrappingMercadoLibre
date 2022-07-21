@@ -2,6 +2,7 @@ package pages;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +51,7 @@ public class PageProduct {
 	 * @param linksDeProductos Lista de url de todos los productos
 	 */
 	public void guardarDatos(ArrayList<String> linksDeProductos) {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		listaDePrecios = new HashMap<>();
 		JSONArray json = new JSONArray();
 		String nameProduct;
