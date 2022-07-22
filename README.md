@@ -8,3 +8,7 @@
 
 ## -Asegurarse de tener abierto Apache y mysql
 desde XAMPP pueden habilitarlo facilmente. 
+
+## run  
+mvn clean 
+mvn build
