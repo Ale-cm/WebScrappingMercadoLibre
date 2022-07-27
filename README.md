@@ -10,5 +10,5 @@
 desde XAMPP pueden habilitarlo facilmente. 
 
 ## run  
-mvn clean 
-mvn build
+-mvn clean 
+-mvn build
