@@ -2,9 +2,8 @@ package tests;
 
 import bdmysqljava.BaseDatosCUp;
 import bdmysqljava.Conexion;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomeMeli;
 import pages.PageBusqueda;
 import pages.PageProduct;
@@ -16,16 +15,14 @@ import pages.PageProduct;
 public class testPageMain {
 
 	public static void main(String[] args) {
-		WebDriverManager.firefoxdriver().setup();
-		WebDriver driver;
 		String baseDatos="mercadoli";
 		String producto="camisa";
 
 		BaseDatosCUp bdup= new BaseDatosCUp();
 		Conexion c = new Conexion();
-		driver = new FirefoxDriver();
-		bdup.crearBD(baseDatos, c);
-		bdup.crearTabla(baseDatos, producto, c);
+		WebDriver driver = new ChromeDriver();
+		//bdup.crearBD(baseDatos, c);
+		//bdup.crearTabla(baseDatos, producto, c);
 		PageBusqueda  MLpageBusq= new PageBusqueda(driver);
 		PageProduct MLpageProd=new PageProduct(driver,baseDatos,producto);
 		HomeMeli  MLhome =new HomeMeli(driver);

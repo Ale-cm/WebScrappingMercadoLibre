@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.TimeUnit;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONAware;
@@ -30,7 +29,7 @@ public class PageProduct {
 	private Map<Integer, Producto> listaDePrecios;
 	private final WebDriver driver;
 	Conexion c=new Conexion();
-	BaseDatosCUp bdup= new BaseDatosCUp();
+	//BaseDatosCUp bdup= new BaseDatosCUp();
 	private final String bd;
 	private final String nameBdT;
 	/**
@@ -60,7 +59,7 @@ public class PageProduct {
 			driver.navigate().to(linksDeProductos.get(i));
 			nameProduct = driver.findElement(nombreXP).getText();
 			priceProduct = limpiarPrecio(driver.findElement(precioXP).getText());
-			bdup.insertarRegistro(c,bd,nameBdT,i, nameProduct, priceProduct);
+	//		bdup.insertarRegistro(c,bd,nameBdT,i, nameProduct, priceProduct);
 			listaDePrecios.put(i, new Producto(nameProduct, priceProduct));
 			json.add(new Producto(nameProduct, priceProduct));
 

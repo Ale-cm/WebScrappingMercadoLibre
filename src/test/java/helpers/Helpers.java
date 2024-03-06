@@ -1,8 +1,9 @@
 package helpers;
 
+
+
 import java.awt.HeadlessException;
 
-import org.openqa.selenium.WebDriver;
 /**
  * Helpers es una clase para metodos comunes a todas las clases o de ayuda.
  * @author Alejandro
@@ -42,9 +43,9 @@ public class Helpers {
  * @param driver
  * @throws HeadlessException
  */
-	public void MaxPantalla(WebDriver driver) throws HeadlessException {
-		driver.manage().window().maximize();
-	}
+	// public void MaxPantalla(WebDriver driver) throws HeadlessException {
+	//driver.manage().window().maximize();
+	//}
 
 	
 }
