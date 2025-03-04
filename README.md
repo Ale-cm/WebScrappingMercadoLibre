@@ -4,11 +4,8 @@
   - recorro cada url guardando precio y nombre del producto 
   - muestro por consola los datos.
   - guardo en un archivo .json el precio y nombre del producto
-  - guarda el nombre y precio en una base de datos mysql
-
-##  (no es necesario) Asegurarse de tener abierto Apache y mysql
-desde XAMPP pueden habilitarlo facilmente. 
-
+ 
 ## run  
--mvn clean 
--mvn build
+  ` mvn compile`
+  
+  ` mvn exec:java -Dexec.mainClass="ScrappingWeb" `
