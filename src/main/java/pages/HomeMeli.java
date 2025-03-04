@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 public class HomeMeli {
 	WebDriver driver;
 
-	private final By buscar = By.name("as_word");
+	private final By inputSearchBoxSelector = By.name("as_word");
 
 
 	public HomeMeli(WebDriver driver) {
@@ -20,9 +20,9 @@ public class HomeMeli {
 	}
 
 	/**
-	 * Buscar. va hacia la direccion que llega desde link
+	 * goLink. va hacia la direccion que llega desde link
 	 */
-	public void buscar(String link) {
+	public void goLink(String link) {
 		this.driver.navigate().to(link);
 	}
 	/**
@@ -30,11 +30,8 @@ public class HomeMeli {
 	 *  y da click en el boton buscar.
 	 */
 	public void EscribeBusqueda(String nombre) {
-		driver.findElement(buscar).sendKeys(nombre);
-		driver.findElement(buscar).submit();
+		driver.findElement(inputSearchBoxSelector).sendKeys(nombre);
+		driver.findElement(inputSearchBoxSelector).submit();
 	}
-	
-
-	
 
 }

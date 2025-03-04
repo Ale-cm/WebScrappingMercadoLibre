@@ -21,7 +21,7 @@ public class ScrappingWeb {
 		PageBusqueda  MLpageBusq= new PageBusqueda(driver);
 		PageProduct MLpageProd=new PageProduct(driver,producto);
 		HomeMeli  MLhome =new HomeMeli(driver);
-		MLhome.buscar("https://www.mercadolibre.com.ar/");
+		MLhome.goLink("https://www.mercadolibre.com.ar/");
 		MLhome.EscribeBusqueda(producto);
 		MLpageProd.guardarDatos(MLpageBusq.obtenerUrls());
 		MLpageProd.mostrar();
