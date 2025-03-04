@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.*;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ public class PageBusqueda {
 	private final By xPathLinks = By.xpath("//div/div[2]/h3/a[starts-with(@href,'https://')]");
 	private final By cssSelecLinks = By.cssSelector("a.ui-search-item__group__element.ui-search-link");
 
-///html/body/main/div/div[2]/section/ol/li[1]/div/div/div[2]/h3/a
 	/**
 	 */
 	public PageBusqueda(WebDriver driver) {

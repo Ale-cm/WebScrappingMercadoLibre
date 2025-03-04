@@ -2,8 +2,6 @@ package helpers;
 
 
 
-import java.awt.HeadlessException;
-
 /**
  * Helpers es una clase para metodos comunes a todas las clases o de ayuda.
  * @author Alejandro
