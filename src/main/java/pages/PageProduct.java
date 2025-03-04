@@ -51,7 +51,7 @@ public class PageProduct {
 		JSONArray json = new JSONArray();
 		String nameProduct;
 		double priceProduct;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < linksDeProductos.size(); i++) {
 			driver.navigate().to(linksDeProductos.get(i));
 			nameProduct = driver.findElement(nombreXP).getText();
 			priceProduct = limpiarPrecio(driver.findElement(precioXP).getText());
@@ -61,7 +61,22 @@ public class PageProduct {
 		}
 		guardarJson(json);
 	}
+	public void guardarDatos(ArrayList<String> linksDeProductos, int cantidadProducto) {
+		listaDePrecios = new HashMap<>();
+		JSONArray json = new JSONArray();
+		String nameProduct;
+		double priceProduct;
+		cantidadProducto = cantidadProducto < linksDeProductos.size() ? cantidadProducto : linksDeProductos.size();
+		for (int i = 0; i < cantidadProducto; i++) {
+			driver.navigate().to(linksDeProductos.get(i));
+			nameProduct = driver.findElement(nombreXP).getText();
+			priceProduct = limpiarPrecio(driver.findElement(precioXP).getText());
+			listaDePrecios.put(i, new Producto(nameProduct, priceProduct));
+			json.add(new Producto(nameProduct, priceProduct));
 
+		}
+		guardarJson(json);
+	}
 	/**
 	 * guarda el JSONArray en un archivo.json
 	 * 

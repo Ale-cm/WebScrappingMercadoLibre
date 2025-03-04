@@ -6,6 +6,4 @@
   - guardo en un archivo .json el precio y nombre del producto
  
 ## run  
-  ` mvn compile`
-  
-  ` mvn exec:java -Dexec.mainClass="ScrappingWeb" `
+  ` mvn compile && mvn exec:java -Dexec.mainClass="ScrappingWeb" `

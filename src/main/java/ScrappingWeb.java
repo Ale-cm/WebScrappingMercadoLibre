@@ -12,7 +12,7 @@ public class ScrappingWeb {
     public static void main(String[] args) {
 		String producto="camisa";
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless=new");	
+		options.addArguments("--headless=new");	// commentar este codigo para ver la ejecucion
 		WebDriver driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
